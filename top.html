@@ -8,10 +8,10 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #111111; /* 완전한 블랙보다 살짝 부드러운 다크 그레이 */
+            background-color: #111111; /* 부드러운 다크 그레이 */
             font-family: 'Noto Sans KR', sans-serif;
             overflow: hidden;
-            border-bottom: 1px solid #333; /* 하단에 아주 얇은 구분선 추가 */
+            border-bottom: 1px solid #333;
         }
 
         header {
@@ -22,25 +22,26 @@
             padding: 0 40px;
         }
 
-        /* 로고 영역 */
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
         }
 
+        /* 로고 이미지 크기 최적화 */
         .logo-img {
-            height: 55px; /* 크기를 적절히 유지하면서 선명하게 */
+            height: 55px; /* 시각적으로 가장 안정적인 높이 */
             width: auto;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+            display: block;
+            border: none;
         }
 
         .logo-text {
             color: #ffffff;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            letter-spacing: 2px; /* 자간을 넓혀 고급스럽게 */
+            letter-spacing: 2px;
             white-space: nowrap;
         }
 
@@ -48,49 +49,41 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin: 0;
             padding: 0;
         }
 
-        /* [핵심] 날렵한 타원형 버튼 스타일 */
+        /* 날렵한 타원형(캡슐) 버튼 */
         nav ul li a {
             text-decoration: none;
-            color: #aaa; /* 평소엔 약간 흐리게 */
-            background: transparent; /* 배경 투명 */
-            padding: 8px 22px;
-            border-radius: 30px; /* 완전한 타원형(캡슐) 형태 */
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: all 0.4s ease;
-            border: 1px solid #444; /* 얇은 테두리 */
+            color: #bbb;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 9px 22px;
+            border-radius: 50px; /* 완전한 타원형 */
+            font-size: 0.95rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            border: 1px solid #444;
             display: inline-block;
             letter-spacing: 1px;
         }
 
-        /* 마우스 올렸을 때 (Hover) */
+        /* 버튼 호버 효과 */
         nav ul li a:hover {
             color: #ffffff;
-            background: #c8a27c; /* 포인트 컬러 */
+            background: #c8a27c; /* 인테리어 포인트 컬러 */
             border-color: #c8a27c;
-            transform: translateY(-2px); /* 살짝 떠오르는 느낌 */
-            box-shadow: 0 5px 15px rgba(200, 162, 124, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200, 162, 124, 0.2);
         }
 
         /* 모바일 대응 */
         @media (max-width: 600px) {
-            header {
-                height: 60px;
-                padding: 0 15px;
-            }
+            header { height: 60px; padding: 0 15px; }
             .logo-img { height: 40px; }
-            .logo-text { font-size: 1rem; letter-spacing: 1px; }
-            
-            nav ul { gap: 6px; }
-            nav ul li a {
-                padding: 5px 12px;
-                font-size: 0.7rem;
-            }
+            .logo-text { font-size: 1.1rem; }
+            nav ul li a { padding: 6px 14px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -98,7 +91,7 @@
 
 <header>
     <a href="main.html" target="main" class="logo-area">
-        <img src="images/logo.png" alt="NOW 로고" class="logo-img">
+        <img src="./images/logo.jpg" alt="" class="logo-img">
         <span class="logo-text">NOW INTERIOR</span>
     </a>
 
