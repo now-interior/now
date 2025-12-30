@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { height: 100%; font-family: 'Noto Sans KR', sans-serif; display: flex; flex-direction: column; color: var(--main-color); }
 
-        /* [1단] 상단 헤더 - 고정 */
+        /* [1단] 상단 헤더 */
         header { 
             height: 80px; background: #fff; border-bottom: 1px solid #eee;
             display: flex; justify-content: space-between; align-items: center; padding: 0 10%;
@@ -21,41 +21,63 @@
         nav ul li { margin-left: 30px; cursor: pointer; font-weight: 500; transition: 0.3s; }
         nav ul li:hover { color: var(--accent-color); }
 
-        /* [2단] 중단 본문 - 메뉴 클릭 시 변경되는 영역 */
+        /* [2단] 중단 본문 */
         main { flex: 1; overflow-y: auto; }
         .content-section { display: none; padding: 60px 10%; animation: fadeIn 0.5s ease; }
         .content-section.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HOME 슬라이더 (중단 영역 전용) */
-        #home-content { padding: 0; height: 70vh; position: relative; overflow: hidden; }
-        .slider { display: flex; width: 600%; height: 100%; animation: infiniteSlide 25s linear infinite; }
-        .slide { width: 100%; height: 100%; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; }
-        .slide::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.3); }
-        .slide-text { position: relative; z-index: 1; color: #fff; text-align: center; }
-        
-        @keyframes infiniteSlide {
+        /* HOME 슬라이더 - 8장(+1장) 전용 설정 */
+        #home { padding: 0; height: 75vh; position: relative; overflow: hidden; display: block; }
+        .slider { 
+            display: flex; 
+            width: 900%; /* 9장 기준 (8장 + 복사본 1장) */
+            height: 100%; 
+            animation: infiniteSlide8 40s linear infinite; /* 속도를 조금 더 여유있게 40초 */
+        }
+        .slide { 
+            width: 11.111%; /* 100% / 9장 */
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .slide::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); }
+        .slide-text { position: relative; z-index: 1; color: #fff; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .slide-text h2 { font-size: 3rem; font-weight: 700; }
+
+        /* 8장 전용 무한 루프 애니메이션 수치 */
+        @keyframes infiniteSlide8 {
             0% { transform: translateX(0); }
-            16.6% { transform: translateX(0); }
-            20% { transform: translateX(-16.66%); }
-            36.6% { transform: translateX(-16.66%); }
-            40% { transform: translateX(-33.33%); }
-            56.6% { transform: translateX(-33.33%); }
-            60% { transform: translateX(-50%); }
-            76.6% { transform: translateX(-50%); }
-            80% { transform: translateX(-66.66%); }
-            96.6% { transform: translateX(-66.66%); }
-            100% { transform: translateX(-83.33%); }
+            11% { transform: translateX(0); }
+            12.5% { transform: translateX(-11.111%); } /* 1->2 */
+            23.5% { transform: translateX(-11.111%); }
+            25% { transform: translateX(-22.222%); } /* 2->3 */
+            36% { transform: translateX(-22.222%); }
+            37.5% { transform: translateX(-33.333%); } /* 3->4 */
+            48.5% { transform: translateX(-33.333%); }
+            50% { transform: translateX(-44.444%); } /* 4->5 */
+            61% { transform: translateX(-44.444%); }
+            62.5% { transform: translateX(-55.555%); } /* 5->6 */
+            73.5% { transform: translateX(-55.555%); }
+            75% { transform: translateX(-66.666%); } /* 6->7 */
+            86% { transform: translateX(-66.666%); }
+            87.5% { transform: translateX(-77.777%); } /* 7->8 */
+            98.5% { transform: translateX(-77.777%); }
+            100% { transform: translateX(-88.888%); } /* 8->복사본이동 */
         }
 
         /* 갤러리 그리드 */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-item { height: 250px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; }
+        .gallery-item { height: 250px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; background: #eee; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* [3단] 하단 풋터 - 고정 */
+        /* [3단] 하단 풋터 */
         footer { 
             background: #222; color: #fff; padding: 40px 10%; text-align: center;
             border-top: 5px solid var(--accent-color);
@@ -79,54 +101,38 @@
     </header>
 
     <main>
-<article id="home" class="content-section active">
-    <div id="home-content">
-        <div class="slider">
-            <div class="slide" style="background-image: url('images/slider/1.jpg');">
-                <div class="slide-text"><h2>PREMIUM DESIGN</h2></div>
+        <article id="home" class="content-section active">
+            <div class="slider">
+                <div class="slide" style="background-image: url('images/slider/1.jpg');"><div class="slide-text"><h2>PREMIUM DESIGN</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/2.jpg');"><div class="slide-text"><h2>MODERN STYLE</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/3.jpg');"><div class="slide-text"><h2>CREATIVE SPACE</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/4.jpg');"><div class="slide-text"><h2>DETAIL WORK</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/5.jpg');"><div class="slide-text"><h2>TOTAL SOLUTION</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/6.jpg');"><div class="slide-text"><h2>COMFORTABLE</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/7.jpg');"><div class="slide-text"><h2>INNOVATION</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/8.jpg');"><div class="slide-text"><h2>SOPHISTICATED</h2></div></div>
+                <div class="slide" style="background-image: url('images/slider/1.jpg');"><div class="slide-text"><h2>PREMIUM DESIGN</h2></div></div>
             </div>
-            <div class="slide" style="background-image: url('images/slider/2.jpg');">
-                <div class="slide-text"><h2>MODERN STYLE</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/3.jpg');">
-                <div class="slide-text"><h2>CREATIVE SPACE</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/4.jpg');">
-                <div class="slide-text"><h2>CREATIVE SPACE</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/5.jpg');">
-                <div class="slide-text"><h2>TOTAL SOLUTION</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/6.jpg');">
-                <div class="slide-text"><h2>>MODERN STYLE</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/7.jpg');">
-                <div class="slide-text"><h2>>DETAIL WORK</h2></div>
-            </div>
-            <div class="slide" style="background-image: url('images/slider/8.jpg');">
-                <div class="slide-text"><h2>PREMIUM DESIGN</h2></div>
-            </div>
-        </div>
-    </div>
-</article>
+        </article>
 
         <article id="intro" class="content-section">
             <h1>Introduction</h1>
-            <p style="margin-top:20px;">NOW 인테리어는 공간의 가치를 창조합니다.</p>
+            <p style="margin-top:20px;">공간의 가치를 깊이 있게 연구하는 NOW 인테리어입니다.</p>
         </article>
 
         <article id="gallery" class="content-section">
             <h1>Our Portfolio</h1>
             <div class="gallery-grid" style="margin-top:30px;">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=600"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1616489953149-7597b2978384?w=600"></div>
+                <div class="gallery-item"><img src="images/slider/1.jpg"></div>
+                <div class="gallery-item"><img src="images/slider/2.jpg"></div>
+                <div class="gallery-item"><img src="images/slider/3.jpg"></div>
             </div>
         </article>
 
         <article id="contact" class="content-section">
             <h1>Contact Us</h1>
-            <p style="margin-top:20px;">상담 예약: 02-123-4567</p>
+            <p style="margin-top:20px;">상담 문의: 02-123-4567</p>
+            <p>이메일: ace.kim.no1@gmail.com</p>
         </article>
     </main>
 
@@ -141,15 +147,10 @@
 
     <script>
         function showPage(pageId) {
-            // 모든 섹션 숨기기
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.classList.remove('active'));
-            
-            // 선택한 섹션만 보이기
             const activeSection = document.getElementById(pageId);
             activeSection.classList.add('active');
-            
-            // 중단 영역 스크롤을 맨 위로 이동
             document.querySelector('main').scrollTop = 0;
         }
     </script>
