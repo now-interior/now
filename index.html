@@ -28,49 +28,45 @@
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HOME 슬라이더 - 8장(+1장) 전용 설정 */
-        #home { padding: 0; height: 75vh; position: relative; overflow: hidden; display: block; }
-        .slider { 
-            display: flex; 
-            width: 900%; /* 9장 기준 (8장 + 복사본 1장) */
-            height: 100%; 
-            animation: infiniteSlide8 40s linear infinite; /* 속도를 조금 더 여유있게 40초 */
-        }
-        .slide { 
-            width: 11.111%; /* 100% / 9장 */
-            height: 100%; 
-            background-size: cover; 
-            background-position: center; 
-            position: relative; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .slide::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.2); }
-        .slide-text { position: relative; z-index: 1; color: #fff; text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .slide-text h2 { font-size: 3rem; font-weight: 700; }
+/* 슬라이더 영역 설정 */
+#home { padding: 0; height: 75vh; position: relative; overflow: hidden; display: block; }
 
-        /* 8장 전용 무한 루프 애니메이션 수치 */
-        @keyframes infiniteSlide8 {
-            0% { transform: translateX(0); }
-            11% { transform: translateX(0); }
-            12.5% { transform: translateX(-11.111%); } /* 1->2 */
-            23.5% { transform: translateX(-11.111%); }
-            25% { transform: translateX(-22.222%); } /* 2->3 */
-            36% { transform: translateX(-22.222%); }
-            37.5% { transform: translateX(-33.333%); } /* 3->4 */
-            48.5% { transform: translateX(-33.333%); }
-            50% { transform: translateX(-44.444%); } /* 4->5 */
-            61% { transform: translateX(-44.444%); }
-            62.5% { transform: translateX(-55.555%); } /* 5->6 */
-            73.5% { transform: translateX(-55.555%); }
-            75% { transform: translateX(-66.666%); } /* 6->7 */
-            86% { transform: translateX(-66.666%); }
-            87.5% { transform: translateX(-77.777%); } /* 7->8 */
-            98.5% { transform: translateX(-77.777%); }
-            100% { transform: translateX(-88.888%); } /* 8->복사본이동 */
-        }
+.slider { 
+    display: flex; 
+    width: 900%; /* 9장 (8장 + 복사본 1장) */
+    height: 100%; 
+    /* 애니메이션 수치를 딱 떨어지게 조정 */
+    animation: slideFix 32s cubic-bezier(0.45, 0, 0.55, 1) infinite; 
+}
 
+.slide { 
+    width: calc(100% / 9); /* 정확하게 9분의 1씩 배분 */
+    height: 100%; 
+    background-size: cover; 
+    background-position: center; 
+    position: relative; 
+}
+
+/* 사진이 반씩 걸리지 않도록 100/9 = 11.1111... 을 정확히 반영한 애니메이션 */
+@keyframes slideFix {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(0); } /* 1번 사진 멈춤 */
+    12.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 2번으로 이동 */
+    22.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 2번 사진 멈춤 */
+    25% { transform: translateX(calc(-100% / 9 * 2)); } /* 3번으로 이동 */
+    35% { transform: translateX(calc(-100% / 9 * 2)); } /* 3번 사진 멈춤 */
+    37.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 4번으로 이동 */
+    47.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 4번 사진 멈춤 */
+    50% { transform: translateX(calc(-100% / 9 * 4)); } /* 5번으로 이동 */
+    60% { transform: translateX(calc(-100% / 9 * 4)); } /* 5번 사진 멈춤 */
+    62.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 6번으로 이동 */
+    72.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 6번 사진 멈춤 */
+    75% { transform: translateX(calc(-100% / 9 * 6)); } /* 7번으로 이동 */
+    85% { transform: translateX(calc(-100% / 9 * 6)); } /* 7번 사진 멈춤 */
+    87.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 8번으로 이동 */
+    97.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 8번 사진 멈춤 */
+    100% { transform: translateX(calc(-100% / 9 * 8)); } /* 복사본으로 이동 후 즉시 리셋 */
+}
         /* 갤러리 그리드 */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .gallery-item { height: 250px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; background: #eee; }
