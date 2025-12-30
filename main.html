@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            height: 100%; 
+            font-family: 'Noto Sans KR', sans-serif; 
+            overflow: hidden; /* 슬라이더만 보이도록 스크롤 방지 */
+        }
+
+        /* 슬라이더 전체 컨테이너 */
+        .slider-container {
+            width: 100%;
+            height: 100vh; /* 화면 꽉 차게 */
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* 슬라이더 줄 (사진 8장 + 복사본 1장 = 총 9장) */
+        .slider-track {
+            display: flex;
+            width: 900%; /* 9장 * 100% */
+            height: 100%;
+            /* calc를 이용해 정확하게 9분의 1씩 이동하도록 설정 */
+            animation: slideAnimation 40s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        /* 개별 슬라이드 칸 */
+        .slide {
+            width: calc(100% / 9); 
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;      /* 세로 중앙 */
+            justify-content: center;   /* 가로 중앙 */
+        }
+
+        /* 글자 가독성을 위한 어두운 오버레이 */
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* 슬라이드 텍스트 스타일 */
+        .slide-text {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .slide-text h2 {
+            font-size: clamp(2rem, 8vw, 4rem); /* 모바일~PC 대응 가변 크기 */
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* 8장 전용 정밀 애니메이션 (사진이 반 잘리지 않게 calc 사용) */
+        @keyframes slideAnimation {
+            0% { transform: translateX(0); }
+            10% { transform: translateX(0); } /* 1번 정지 */
+            12.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 1->2 이동 */
+            22.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 2번 정지 */
+            25% { transform: translateX(calc(-100% / 9 * 2)); } /* 2->3 이동 */
+            35% { transform: translateX(calc(-100% / 9 * 2)); } /* 3번 정지 */
+            37.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 3->4 이동 */
+            47.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 4번 정지 */
+            50% { transform: translateX(calc(-100% / 9 * 4)); } /* 4->5 이동 */
+            60% { transform: translateX(calc(-100% / 9 * 4)); } /* 5번 정지 */
+            62.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 5->6 이동 */
+            72.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 6번 정지 */
+            75% { transform: translateX(calc(-100% / 9 * 6)); } /* 6->7 이동 */
+            85% { transform: translateX(calc(-100% / 9 * 6)); } /* 7번 정지 */
+            87.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 7->8 이동 */
+            97.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 8번 정지 */
+            100% { transform: translateX(calc(-100% / 9 * 8)); } /* 복사본으로 이동 후 리셋 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slider-track">
+            <div class="slide" style="background-image: url('images/slider/1.jpg');"><div class="slide-text"><h2>PREMIUM DESIGN</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/2.jpg');"><div class="slide-text"><h2>MODERN STYLE</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/3.jpg');"><div class="slide-text"><h2>CREATIVE SPACE</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/4.jpg');"><div class="slide-text"><h2>DETAIL WORK</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/5.jpg');"><div class="slide-text"><h2>TOTAL SOLUTION</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/6.jpg');"><div class="slide-text"><h2>COMFORTABLE</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/7.jpg');"><div class="slide-text"><h2>INNOVATION</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/8.jpg');"><div class="slide-text"><h2>SOPHISTICATED</h2></div></div>
+            <div class="slide" style="background-image: url('images/slider/1.jpg');"><div class="slide-text"><h2>PREMIUM DESIGN</h2></div></div>
+        </div>
+    </div>
+
+</body>
+</html>
