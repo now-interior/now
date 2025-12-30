@@ -7,41 +7,40 @@
         body { 
             margin: 0; 
             padding: 25px 5%; 
-            background: #1a1a1a; /* 배경을 조금 더 진하게 해서 글자 대비 강화 */
+            background: #1a1a1a; 
             color: #ffffff; 
             text-align: center; 
             font-family: 'Noto Sans KR', sans-serif;
             border-top: 4px solid #c8a27c;
         }
         
-        /* 메인 슬로건 강조 */
+        /* 메인 슬로건 */
         .footer-msg { 
-            font-size: 1.2rem; /* 크기 확대 */
+            font-size: 1.25rem; 
             margin-bottom: 15px; 
-            color: #ffffff;    /* 흰색으로 변경해서 눈에 띄게 함 */
-            font-weight: 700;   /* 굵게 */
+            color: #ffffff; 
+            font-weight: 700;
             letter-spacing: 1px;
         }
 
-        /* 주소 및 연락처 상세 정보 */
+        /* 하단 정보 텍스트 (기본 흰색) */
         .footer-info { 
-            font-size: 1rem;   /* 본문 크기도 확대 (약 16px) */
-            color: #cccccc;    /* 밝은 회색으로 가독성 확보 */
-            line-height: 1.8; 
+            font-size: 1.05rem; 
+            color: #ffffff; 
+            line-height: 1.9; 
             font-weight: 400;
         }
 
-        /* 강조하고 싶은 텍스트 (전화번호 등) */
-        .highlight {
-            color: #c8a27c;    /* 로고 색상과 맞춘 포인트 컬러 */
+        /* 전화번호 포인트 컬러 (세련된 핑크/골드톤) */
+        .phone-highlight {
+            color: #ff69b4; /* 포인트 컬러 */
             font-weight: 700;
         }
 
-        /* 저작권 표시 */
         .copyright {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 0.85rem;
-            color: #666;
+            color: #777;
         }
     </style>
 </head>
@@ -49,8 +48,8 @@
     <div class="footer-msg">"공간에 대한 새로운 시각, NOW INTERIOR"</div>
     
     <div class="footer-info">
-        <span class="highlight">주소:</span> 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
-        <span class="highlight">대표전화: 053-312-7312 / 010-3800-1027</span> | <span class="highlight">이메일:</span> now-interior@gmail.com
+        주소: 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
+        대표전화: <span class="phone-highlight">053-312-7312 / 010-3800-1027</span> | E-mail : now-interior@gmail.com
     </div>
 
     <div class="copyright">
@@ -58,4 +57,5 @@
     </div>
 </body>
 </html>
+
 
