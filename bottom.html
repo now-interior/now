@@ -2,33 +2,58 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { 
             margin: 0; 
-            padding: 20px 5%; /* 위아래 여백을 30px에서 20px로 줄임 */
-            background: #222; 
-            color: #fff; 
+            padding: 25px 5%; 
+            background: #1a1a1a; /* 배경을 조금 더 진하게 해서 글자 대비 강화 */
+            color: #ffffff; 
             text-align: center; 
-            font-family: sans-serif;
-            border-top: 3px solid #c8a27c;
+            font-family: 'Noto Sans KR', sans-serif;
+            border-top: 4px solid #c8a27c;
         }
+        
+        /* 메인 슬로건 강조 */
         .footer-msg { 
-            font-size: 1rem; 
-            margin-bottom: 10px; 
-            color: #bbb; 
+            font-size: 1.2rem; /* 크기 확대 */
+            margin-bottom: 15px; 
+            color: #ffffff;    /* 흰색으로 변경해서 눈에 띄게 함 */
+            font-weight: 700;   /* 굵게 */
+            letter-spacing: 1px;
         }
+
+        /* 주소 및 연락처 상세 정보 */
         .footer-info { 
-            font-size: 0.85rem; 
-            color: #888; 
-            line-height: 1.6; 
+            font-size: 1rem;   /* 본문 크기도 확대 (약 16px) */
+            color: #cccccc;    /* 밝은 회색으로 가독성 확보 */
+            line-height: 1.8; 
+            font-weight: 400;
+        }
+
+        /* 강조하고 싶은 텍스트 (전화번호 등) */
+        .highlight {
+            color: #c8a27c;    /* 로고 색상과 맞춘 포인트 컬러 */
+            font-weight: 700;
+        }
+
+        /* 저작권 표시 */
+        .copyright {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
     <div class="footer-msg">"공간에 대한 새로운 시각, NOW INTERIOR"</div>
+    
     <div class="footer-info">
-        주소: 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
-        대표전화: 053-312-7912 | 이메일: ace.kim.no1@gmail.com<br>
+        <span class="highlight">주소:</span> 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
+        <span class="highlight">대표전화: 053-312-7312 / 010-3800-1027</span> | <span class="highlight">이메일:</span> now-interior@gmail.com
+    </div>
+
+    <div class="copyright">
         Copyright © 2025 NOW Interior. All rights reserved.
     </div>
 </body>
