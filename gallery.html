@@ -10,7 +10,6 @@
         .gallery-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; color: #c8a27c; letter-spacing: 2px; }
         .gallery-desc { text-align: center; color: #888; margin-bottom: 50px; font-weight: 300; }
 
-        /* 바둑판 레이아웃 - 1200px 너비 안에서 자동으로 갯수 조절 */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -23,43 +22,65 @@
             position: relative;
             overflow: hidden;
             border-radius: 8px;
-            aspect-ratio: 1 / 1; /* 사진을 정사각형으로 통일 */
+            aspect-ratio: 1 / 1;
             cursor: pointer;
             background-color: #111;
         }
 
         .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 사진이 일그러지지 않게 꽉 채움 */
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        /* 마우스 올렸을 때 효과 */
         .gallery-item:hover img { transform: scale(1.1); }
         .gallery-item:hover .overlay { opacity: 1; }
 
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* 사진을 살짝 어둡게 */
+            background: rgba(0, 0, 0, 0.5);
             display: flex; align-items: center; justify-content: center;
             opacity: 0; transition: 0.3s;
         }
 
         .overlay span { 
-            color: #fff; 
-            font-weight: 500; 
-            font-size: 1rem; 
-            border: 1px solid #fff; 
-            padding: 8px 20px;
-            border-radius: 20px;
+            color: #fff; font-weight: 500; font-size: 1rem; 
+            border: 1px solid #fff; padding: 8px 20px; border-radius: 20px;
+        }
+
+        /* --- [액자(모달) 스타일] --- */
+        .modal {
+            display: none; /* 평소엔 숨김 */
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center; justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border: 5px solid #fff; /* 흰색 액자 틀 */
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation: zoom 0.3s ease;
+        }
+
+        @keyframes zoom {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 50px;
+            color: #fff; font-size: 50px; font-weight: bold;
+            cursor: pointer;
         }
 
         @media (max-width: 600px) {
-            padding: 40px 15px;
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* 모바일은 2열 */
-            .gallery-title { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .modal-content { max-width: 95%; border-width: 3px; }
         }
     </style>
 </head>
@@ -69,22 +90,39 @@
     <p class="gallery-desc">나우 인테리어가 완성한 대구의 아름다운 공간들입니다.</p>
 
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="images/gallery/001.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/002.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/003.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/004.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/005.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/006.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/007.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/008.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/009.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/010.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/011.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/012.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/013.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
-        <div class="gallery-item"><img src="images/gallery/014.jpg" alt=""><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/001.jpg')"><img src="images/gallery/001.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/002.jpg')"><img src="images/gallery/002.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/003.jpg')"><img src="images/gallery/003.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/004.jpg')"><img src="images/gallery/004.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/005.jpg')"><img src="images/gallery/005.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/006.jpg')"><img src="images/gallery/006.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/007.jpg')"><img src="images/gallery/007.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/008.jpg')"><img src="images/gallery/008.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/009.jpg')"><img src="images/gallery/009.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/010.jpg')"><img src="images/gallery/010.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/011.jpg')"><img src="images/gallery/011.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/012.jpg')"><img src="images/gallery/012.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/013.jpg')"><img src="images/gallery/013.jpg"><div class="overlay"><span>VIEW</span></div></div>
+        <div class="gallery-item" onclick="openModal('images/gallery/014.jpg')"><img src="images/gallery/014.jpg"><div class="overlay"><span>VIEW</span></div></div>
     </div>
 
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+        // 액자 열기
+        function openModal(imgSrc) {
+            document.getElementById("myModal").style.display = "flex";
+            document.getElementById("img01").src = imgSrc;
+        }
+
+        // 액자 닫기
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+
 </body>
-</html>
 </html>
