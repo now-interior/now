@@ -2,46 +2,53 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    /* 모바일에서 화면이 밀리지 않도록 설정 */
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NOW Interior Design</title>
+    
+    <link rel="icon" href="images/favicon.jpg" type="image/png">
+    
     <style>
-        /* 화면 전체 설정 */
+        /* 화면 전체 레이아웃 설정 */
         body, html { 
-            margin: 0; padding: 0; 
-            height: 100%; width: 100%;
-            display: flex; flex-direction: column; 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%;
+            display: flex; 
+            flex-direction: column; 
             overflow: hidden; /* 전체 스크롤 방지 */
+            background-color: #1a1a1a; /* 배경색 통일 */
         }
 
-        /* [1단] 상단: 고정 높이 */
+        /* [1단] 상단 메뉴 영역 */
         .header-frame { 
             width: 100%; 
-            height: 80px; 
+            height: 80px; /* PC 기준 높이 */
             border: none; 
-            flex-shrink: 0; /* 크기 유지 */
+            flex-shrink: 0; /* 크기 고정 */
         }
 
-        /* [2단] 중단: 남은 공간 모두 차지 */
+        /* [2단] 중단 메인 슬라이더 영역 */
         .main-frame { 
             width: 100%; 
-            flex: 1; /* 상/하단 제외한 나머지 공간 자동 채움 */
+            flex: 1; /* 나머지 중간 공간을 모두 차지 */
             border: none; 
         }
 
-/* [3단] 하단: 고정 높이 미세 조정 */
-.footer-frame { 
-    width: 100%; 
-    height: 180px; /* 기존 140px에서 180px로 확대 */
-    border: none; 
-    flex-shrink: 0;
-    background: #222;
-}
+        /* [3단] 하단 정보 영역 */
+        .footer-frame { 
+            width: 100%; 
+            height: 180px; /* 미세 조정한 하단 높이 */
+            border: none; 
+            flex-shrink: 0; /* 크기 고정 */
+        }
 
-/* 모바일용 높이 조정 */
-@media (max-width: 600px) {
-    .header-frame { height: 60px; } 
-    .footer-frame { height: 200px; } /* 모바일은 글자가 줄바꿈되므로 더 높게 */
-}
+        /* 모바일용 반응형 높이 조절 */
+        @media (max-width: 600px) {
+            .header-frame { height: 60px; } 
+            .footer-frame { height: 200px; } /* 모바일은 글자가 겹치지 않게 더 높게 */
+        }
     </style>
 </head>
 <body>
@@ -54,3 +61,4 @@
 
 </body>
 </html>
+
