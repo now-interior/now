@@ -6,12 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #111111; /* 부드러운 다크 그레이 */
+            margin: 0; padding: 0;
+            background-color: #111111;
             font-family: 'Noto Sans KR', sans-serif;
-            overflow: hidden;
-            border-bottom: 1px solid #333;
+            /* 서브메뉴가 아래로 내려와야 하므로 overflow: hidden을 제거합니다 */
         }
 
         header {
@@ -20,6 +18,8 @@
             align-items: center;
             height: 80px;
             padding: 0 40px;
+            position: relative;
+            z-index: 1000;
         }
 
         .logo-area {
@@ -29,61 +29,85 @@
             text-decoration: none;
         }
 
-        /* 로고 이미지 크기 최적화 */
-        .logo-img {
-            height: 55px; /* 시각적으로 가장 안정적인 높이 */
-            width: auto;
-            display: block;
-            border: none;
-        }
-
-        .logo-text {
-            color: #ffffff;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            white-space: nowrap;
-        }
+        .logo-img { height: 55px; width: auto; }
+        .logo-text { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
 
         /* 메뉴 영역 */
         nav ul {
             list-style: none;
             display: flex;
             gap: 12px;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
         }
 
-        /* 날렵한 타원형(캡슐) 버튼 */
-        nav ul li a {
+        /* 메인 메뉴 항목 */
+        .nav-item {
+            position: relative; /* 서브메뉴 위치의 기준 */
+        }
+
+        .nav-item > a {
             text-decoration: none;
             color: #bbb;
             background: rgba(255, 255, 255, 0.05);
             padding: 9px 22px;
-            border-radius: 50px; /* 완전한 타원형 */
+            border-radius: 50px;
             font-size: 0.95rem;
-            font-weight: 300;
             transition: all 0.3s ease;
             border: 1px solid #444;
             display: inline-block;
-            letter-spacing: 1px;
         }
 
-        /* 버튼 호버 효과 */
-        nav ul li a:hover {
-            color: #ffffff;
-            background: #c8a27c; /* 인테리어 포인트 컬러 */
+        .nav-item:hover > a {
+            color: #fff;
+            background: #c8a27c;
             border-color: #c8a27c;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(200, 162, 124, 0.2);
         }
 
-        /* 모바일 대응 */
+        /* [핵심] 서브메뉴 스타일 */
+        .sub-menu {
+            position: absolute;
+            top: 110%; /* 버튼 바로 아래 위치 */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            display: flex; /* 옆으로 나열 */
+            gap: 10px;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            visibility: hidden; /* 평소엔 숨김 */
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        /* 마우스 올리면 서브메뉴 등장 */
+        .nav-item:hover .sub-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .sub-menu a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 6px 15px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .sub-menu a:hover {
+            background: rgba(200, 162, 124, 0.2);
+            color: #c8a27c;
+        }
+
         @media (max-width: 600px) {
             header { height: 60px; padding: 0 15px; }
             .logo-img { height: 40px; }
             .logo-text { font-size: 1.1rem; }
-            nav ul li a { padding: 6px 14px; font-size: 0.8rem; }
+            .sub-menu { top: 100%; } /* 모바일에서 위치 조정 */
         }
     </style>
 </head>
@@ -97,13 +121,22 @@
 
     <nav>
         <ul>
-            <li><a href="main.html" target="main">HOME</a></li>
-            <li><a href="intro.html" target="main">INTRO</a></li>
-            <li><a href="gallery.html" target="main">GALLERY</a></li>
-            <li><a href="contact.html" target="main">CONTACT</a></li>
+            <li class="nav-item"><a href="main.html" target="main">HOME</a></li>
+            
+            <li class="nav-item">
+                <a href="#">INTRO</a>
+                <div class="sub-menu">
+                    <a href="intro1.html" target="main">인테리어 시공</a>
+                    <a href="intro2.html" target="main">철거 작업</a>
+                </div>
+            </li>
+            
+            <li class="nav-item"><a href="gallery.html" target="main">GALLERY</a></li>
+            <li class="nav-item"><a href="contact.html" target="main">CONTACT</a></li>
         </ul>
     </nav>
 </header>
 
 </body>
 </html>
+
