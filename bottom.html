@@ -2,43 +2,45 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body { 
             margin: 0; 
-            padding: 25px 5%; 
+            padding: 20px 5%; /* 상하 여백을 25px에서 20px로 살짝 줄임 */
             background: #1a1a1a; 
             color: #ffffff; 
             text-align: center; 
             font-family: 'Noto Sans KR', sans-serif;
-            border-top: 4px solid #c8a27c;
+            border-top: 3px solid #c8a27c; /* 선 두께도 살짝 슬림하게 */
         }
         
+        /* 메인 슬로건 - 1.25rem에서 1.1rem으로 축소 */
         .footer-msg { 
-            font-size: 1.25rem; 
-            margin-bottom: 15px; 
-            color: #ffffff; 
+            font-size: 1.1rem; 
+            margin-bottom: 12px; 
+            color: rgba(255, 255, 255, 0.9); 
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
+        /* 하단 정보 텍스트 - 1.05rem에서 0.9rem으로 축소 */
         .footer-info { 
-            font-size: 1.05rem; 
-            color: #ffffff; 
-            line-height: 1.9; 
+            font-size: 0.9rem; 
+            color: #bbb; /* 순백색보다 살짝 톤다운된 회색으로 눈을 편안하게 */
+            line-height: 1.7; 
             font-weight: 400;
         }
 
-        /* [수정] 너무 진한 분홍색 대신 연하고 세련된 로즈 핑크 적용 */
+        /* 전화번호 포인트 컬러 - 채도를 살짝 더 낮춘 연한 핑크 */
         .phone-highlight {
-            color: #ff99bb; /* 부드러운 로즈 핑크 */
+            color: #ffb3cc; 
             font-weight: 700;
         }
 
         .copyright {
-            margin-top: 12px;
-            font-size: 0.85rem;
-            color: #777;
+            margin-top: 10px;
+            font-size: 0.8rem; /* 저작권 문구도 소폭 축소 */
+            color: #555;
         }
     </style>
 </head>
