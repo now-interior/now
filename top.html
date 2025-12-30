@@ -1,10 +1,86 @@
-<style>
-    body { margin: 0; font-family: sans-serif; display: flex; justify-content: space-between; align-items: center; padding: 0 10%; height: 80px; background: #fff; border-bottom: 1px solid #eee; }
-    .logo { font-size: 24px; font-weight: bold; }
-    nav ul { display: flex; list-style: none; gap: 20px; }
-    nav ul li { cursor: pointer; }
-</style>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            background: #fff; 
+            overflow: hidden; /* 메뉴바 영역 밖으로 스크롤 방지 */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 80px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #333;
+            cursor: pointer;
+            white-space: nowrap; /* 로고 줄바꿈 방지 */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        nav ul li:hover {
+            color: #c8a27c; /* 포인트 컬러 */
+        }
+
+        /* [반응형 디자인] 화면 너비가 600px 이하일 때 (모바일) */
+        @media (max-width: 600px) {
+            header {
+                padding: 0 3%;
+                height: 60px; /* 모바일에서는 높이를 조금 줄임 */
+            }
+            .logo {
+                font-size: 16px; /* 로고 크기 축소 */
+            }
+            nav ul {
+                gap: 10px; /* 메뉴 간격 축소 */
+            }
+            nav ul li {
+                font-size: 11px; /* 글자 크기 축소 */
+            }
+        }
+    </style>
+</head>
 <body>
-    <div class="logo">NOW INTERIOR</div>
-    <nav><ul><li>HOME</li><li>INTRO</li><li>GALLERY</li><li>CONTACT</li></ul></nav>
+
+    <header>
+        <div class="logo">NOW INTERIOR</div>
+        <nav>
+            <ul>
+                <li>HOME</li>
+                <li>INTRO</li>
+                <li>GALLERY</li>
+                <li>CONTACT</li>
+            </ul>
+        </nav>
+    </header>
+
 </body>
+</html>
+
