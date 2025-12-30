@@ -31,20 +31,64 @@
 /* 슬라이더 영역 설정 */
 #home { padding: 0; height: 75vh; position: relative; overflow: hidden; display: block; }
 
-.slider { 
-    display: flex; 
-    width: 900%; /* 9장 (8장 + 복사본 1장) */
-    height: 100%; 
-    /* 애니메이션 수치를 딱 떨어지게 조정 */
-    animation: slideFix 32s cubic-bezier(0.45, 0, 0.55, 1) infinite; 
-}
-
+/* 슬라이드 개별 칸 설정 */
 .slide { 
-    width: calc(100% / 9); /* 정확하게 9분의 1씩 배분 */
+    width: calc(100% / 9); 
     height: 100%; 
     background-size: cover; 
     background-position: center; 
     position: relative; 
+    
+    /* [수정 포인트] 글자를 중앙으로 보내는 핵심 설정 */
+    display: flex;            /* 유연한 배치 모드 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    justify-content: center;   /* 가로 중앙 정렬 */
+}
+
+/* 슬라이드 위 검은색 그림자 (글자를 더 잘 보이게 함) */
+.slide::after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0, 0, 0, 0.3); /* 살짝 어둡게 해서 글자 강조 */
+}
+
+/* 글자 스타일 */
+.slide-text { 
+    position: relative; 
+    z-index: 2;               /* 배경보다 위에 오도록 함 */
+    color: #fff; 
+    text-align: center; 
+    word-break: keep-all;     /* 문장이 자연스럽게 넘어가게 함 */
+}
+
+.slide-text h2 { 
+    font-size: clamp(1.5rem, 5vw, 3rem); /* 화면 크기에 따라 글자 크기 자동 조절 */
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* 글자 테두리 그림자 */
+}
+
+
+/* 사진이 반씩 걸리지 않도록 100/9 = 11.1111... 을 정확히 반영한 애니메이션 */
+@keyframes slideFix {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(0); } /* 1번 사진 멈춤 */
+    12.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 2번으로 이동 */
+    22.5% { transform: translateX(calc(-100% / 9 * 1)); } /* 2번 사진 멈춤 */
+    25% { transform: translateX(calc(-100% / 9 * 2)); } /* 3번으로 이동 */
+    35% { transform: translateX(calc(-100% / 9 * 2)); } /* 3번 사진 멈춤 */
+    37.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 4번으로 이동 */
+    47.5% { transform: translateX(calc(-100% / 9 * 3)); } /* 4번 사진 멈춤 */
+    50% { transform: translateX(calc(-100% / 9 * 4)); } /* 5번으로 이동 */
+    60% { transform: translateX(calc(-100% / 9 * 4)); } /* 5번 사진 멈춤 */
+    62.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 6번으로 이동 */
+    72.5% { transform: translateX(calc(-100% / 9 * 5)); } /* 6번 사진 멈춤 */
+    75% { transform: translateX(calc(-100% / 9 * 6)); } /* 7번으로 이동 */
+    85% { transform: translateX(calc(-100% / 9 * 6)); } /* 7번 사진 멈춤 */
+    87.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 8번으로 이동 */
+    97.5% { transform: translateX(calc(-100% / 9 * 7)); } /* 8번 사진 멈춤 */
+    100% { transform: translateX(calc(-100% / 9 * 8)); } /* 복사본으로 이동 후 즉시 리셋 */
 }
 
 /* 사진이 반씩 걸리지 않도록 100/9 = 11.1111... 을 정확히 반영한 애니메이션 */
