@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            margin: 0; 
+            padding: 30px 10%; 
+            background: #222; 
+            color: #fff; 
+            text-align: center; 
+            font-family: 'Noto Sans KR', sans-serif;
+            border-top: 4px solid #c8a27c; /* 포인트 컬러 선 */
+        }
+        .footer-msg { 
+            font-size: 1.1rem; 
+            margin-bottom: 15px; 
+            color: #bbb; 
+            font-weight: 300;
+        }
+        .footer-info { 
+            font-size: 0.9rem; 
+            color: #888; 
+            line-height: 1.8; 
+        }
+    </style>
+</head>
+<body>
+    <div class="footer-msg">"공간에 대한 새로운 시각, NOW INTERIOR"</div>
+    <div class="footer-info">
+        주소: 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
+        대표전화: 053-312-7912 | 이메일: ace.kim.no1@gmail.com<br>
+        Copyright © 2025 NOW Interior. All rights reserved.
+    </div>
+</body>
+</html>
