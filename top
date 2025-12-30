@@ -1,1 +1,10 @@
-
+<style>
+    body { margin: 0; font-family: sans-serif; display: flex; justify-content: space-between; align-items: center; padding: 0 10%; height: 80px; background: #fff; border-bottom: 1px solid #eee; }
+    .logo { font-size: 24px; font-weight: bold; }
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    nav ul li { cursor: pointer; }
+</style>
+<body>
+    <div class="logo">NOW INTERIOR</div>
+    <nav><ul><li>HOME</li><li>INTRO</li><li>GALLERY</li><li>CONTACT</li></ul></nav>
+</body>
