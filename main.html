@@ -50,20 +50,36 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-        /* 슬라이드 텍스트 스타일 */
-        .slide-text {
-            position: relative;
-            z-index: 10;
-            color: #fff;
-            text-align: center;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+/* 슬라이드 글자 스타일 미세 조정 */
+.slide-text { 
+    position: relative; 
+    z-index: 10; 
+    color: rgba(255, 255, 255, 0.95); /* 완전한 생흰색 대신 아주 살짝 투명도를 주어 사진과 섞이게 함 */
+    text-align: center; 
+    word-break: keep-all; 
+}
 
-        .slide-text h2 {
-            font-size: clamp(2rem, 8vw, 4rem); /* 모바일~PC 대응 가변 크기 */
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
+.slide-text h2 { 
+    /* 글자 크기를 살짝 조절하고 자간을 넓혀 고급스러운 느낌 강조 */
+    font-size: clamp(1.8rem, 6vw, 3.5rem); 
+    font-weight: 300; /* 너무 굵은 것보다 얇은 글씨가 인테리어 감성에 더 잘 어울립니다 */
+    letter-spacing: 4px; /* 글자 사이 간격을 넓혀서 여유로운 느낌 */
+    text-transform: uppercase; /* 영문의 경우 대문자로 정돈 */
+    
+    /* 글자 뒤에 아주 은은한 그림자를 주어 튀지 않으면서도 읽히게 함 */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* 글자 아래에 얇은 선 하나를 추가해 포인트를 줄 수도 있습니다 (선택사항) */
+.slide-text h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 20px auto 0;
+}
+
 
         /* 8장 전용 정밀 애니메이션 (사진이 반 잘리지 않게 calc 사용) */
         @keyframes slideAnimation {
