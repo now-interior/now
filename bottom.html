@@ -15,29 +15,22 @@
             border-top: 3px solid #c8a27c;
         }
         
-        /* 메인 슬로건 */
         .footer-msg { 
             font-size: 1.1rem; 
             margin-bottom: 15px; 
             color: rgba(255, 255, 255, 0.9); 
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
 
-        /* 하단 정보 텍스트 */
+        /* 하단 정보 전체 감싸는 박스 */
         .footer-info { 
             font-size: 0.9rem; 
             color: #bbb; 
-            line-height: 1.8; 
-            font-weight: 400;
-            /* 핵심: 긴 문장이 화면 밖으로 나가지 않게 조절 */
-            word-break: keep-all; 
-        }
-
-        /* 정보 사이의 구분선 (|) 을 모바일에서는 숨기거나 줄바꿈 처리 */
-        .separator {
-            margin: 0 8px;
-            color: #444;
+            line-height: 1.8;
+            display: flex; /* 가로로 나열하기 위해 설정 */
+            justify-content: center; /* 가운데 정렬 */
+            flex-wrap: wrap; /* 자리가 부족하면 아래로 내림 */
+            gap: 15px; /* 정보 사이의 간격 */
         }
 
         .phone-highlight {
@@ -51,18 +44,14 @@
             color: #555;
         }
 
-        /* 📱 모바일 전용 스타일 */
+        /* 📱 모바일 최적화 (화면이 768px보다 작아질 때) */
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .footer-msg { font-size: 1rem; }
-            .footer-info { font-size: 0.85rem; }
-            
-            /* 모바일에서는 세로로 차곡차곡 쌓이게 줄바꿈 강제 적용 */
-            .mobile-block {
-                display: block;
-                margin-top: 5px;
+            .footer-info {
+                flex-direction: column; /* 가로에서 세로 정렬로 변경 */
+                gap: 5px; /* 모바일에서는 줄 간격을 좁게 */
+                font-size: 0.85rem;
             }
-            .separator { display: none; } /* 모바일에서는 세로 바(|) 숨김 */
+            .pc-bar { display: none; } /* 모바일에서는 세로 구분선 숨김 */
         }
     </style>
 </head>
@@ -70,10 +59,11 @@
     <div class="footer-msg">"공간에 대한 새로운 시각, NOW INTERIOR"</div>
     
     <div class="footer-info">
-        주소: 대구광역시 북구 도남길 23. SODAM B/D 3층<br>
-        <span class="mobile-block">대표전화: <span class="phone-highlight">053-312-7312 / 010-3800-1027</span></span>
-        <span class="separator">|</span>
-        <span class="mobile-block">E-mail : nowinterior01@gmail.com</span>
+        <span>주소: 대구광역시 북구 도남길 23. SODAM B/D 3층</span>
+        <span class="pc-bar">|</span>
+        <span>대표전화: <span class="phone-highlight">053-312-7312 / 010-3800-1027</span></span>
+        <span class="pc-bar">|</span>
+        <span>E-mail : nowinterior01@gmail.com</span>
     </div>
 
     <div class="copyright">
