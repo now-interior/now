@@ -21,7 +21,14 @@
 
         .logo-area { display: flex; align-items: center; gap: 8px; text-decoration: none; }
         .logo-img { height: 35px; width: auto; }
-        .logo-text { color: #fff; font-size: 1rem; font-weight: 700; letter-spacing: 1px; }
+        /* [수정] 글자 크기를 1.1rem으로 키우고 white-space 추가 */
+        .logo-text { 
+            color: #fff; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            white-space: nowrap; /* 줄바꿈 방지 */
+        }
 
         nav ul { list-style: none; display: flex; gap: 2px; margin: 0; padding: 0; }
         .nav-item { position: relative; }
@@ -48,7 +55,6 @@
             opacity: 0;
             transition: 0.2s;
             z-index: 1001;
-            /* 글자가 길어져도 박스가 옆으로 늘어나게 함 */
             white-space: nowrap; 
         }
 
@@ -62,11 +68,13 @@
         }
         .sub-menu a:hover { color: #fff; }
 
+        /* 📱 모바일 최적화 (화면 폭이 좁을 때) */
         @media (max-width: 600px) {
             header { height: 50px; padding: 0 10px; }
-            .logo-text { font-size: 0.9rem; }
+            /* 모바일에서도 한 줄에 다 나오게 폰트 크기 살짝 조절 */
+            .logo-text { font-size: 0.95rem; } 
             .logo-img { height: 28px; }
-            .nav-item > a { padding: 5px 6px; font-size: 0.8rem; }
+            .nav-item > a { padding: 5px 5px; font-size: 0.78rem; }
         }
     </style>
 </head>
@@ -74,7 +82,7 @@
 <header>
     <a href="/now/main.html" target="main" class="logo-area">
         <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
-        <span class="logo-text">NOW</span>
+        <span class="logo-text">NOW INTERIOR</span>
     </a>
     <nav>
         <ul>
