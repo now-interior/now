@@ -5,41 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 60px 20px; background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; }
+        body { margin: 0; padding: 60px 20px; background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; }
         
-        /* 상단 문구 섹션 */
+        /* 상단 철학 문구 */
         .intro-section { text-align: center; margin-bottom: 60px; }
-        .intro-title { font-size: 2.5rem; color: #c8a27c; font-weight: 700; margin-bottom: 20px; }
-        .intro-text { font-size: 1.1rem; color: #ccc; font-weight: 300; word-break: keep-all; }
-        .highlight { color: #fff; font-weight: 500; border-bottom: 1px solid #c8a27c; }
+        .intro-title { font-size: 2.5rem; color: #c8a27c; font-weight: 700; margin-bottom: 25px; letter-spacing: 2px; }
+        .intro-text-top { line-height: 1.6; margin-bottom: 30px; color: #ddd; font-weight: 300; }
+        .intro-text-bottom { font-size: 1.2rem; font-weight: 500; color: #fff; }
+        .highlight { color: #c8a27c; font-weight: 500; border-bottom: 1px solid #c8a27c; }
 
-        /* 지도 섹션 */
-        .map-section { width: 100%; height: 400px; background: #222; border: 1px solid #333; margin-bottom: 40px; border-radius: 10px; overflow: hidden; }
+        /* 지도 섹션 (가장 확실한 링크 방식) */
+        .map-section { 
+            width: 100%; 
+            height: 400px; 
+            background-color: #222; 
+            margin-bottom: 50px; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            position: relative;
+            border: 1px solid #333;
+        }
+        .map-overlay-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2db400; color: #fff;
+            padding: 15px 30px; border-radius: 30px;
+            text-decoration: none; font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
 
-        /* 정보 및 문의 폼 섹션 */
-        .contact-content { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
+        /* 하단 레이아웃 */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; }
         
-        .info-box h3 { color: #c8a27c; font-size: 1.5rem; margin-bottom: 20px; }
-        .info-item { margin-bottom: 15px; color: #bbb; }
-        .info-item strong { color: #fff; display: inline-block; width: 80px; }
+        .info-box h3 { color: #c8a27c; font-size: 1.5rem; margin-bottom: 25px; border-left: 4px solid #c8a27c; padding-left: 15px; }
+        .info-item { margin-bottom: 20px; }
+        .info-item strong { color: #888; display: block; font-size: 0.9rem; margin-bottom: 5px; }
+        .info-item span { color: #fff; font-size: 1.05rem; }
 
-        /* 비밀 문의 폼 스타일 */
-        .inquiry-form { background: #111; padding: 30px; border-radius: 10px; border: 1px solid #222; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #888; }
+        /* 문의 폼 */
+        .inquiry-card { background: #111; padding: 35px; border-radius: 15px; border: 1px solid #222; }
+        .inquiry-card h3 { margin-top: 0; color: #fff; margin-bottom: 20px; font-size: 1.4rem; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #aaa; }
         .form-group input, .form-group textarea { 
-            width: 100%; padding: 10px; background: #222; border: 1px solid #333; 
-            color: #fff; border-radius: 5px; box-sizing: border-box;
+            width: 100%; padding: 12px; background: #222; border: 1px solid #333; 
+            color: #fff; border-radius: 6px; box-sizing: border-box;
         }
         .submit-btn { 
-            width: 100%; padding: 15px; background: #c8a27c; border: none; 
-            color: #000; font-weight: 700; cursor: pointer; border-radius: 5px; transition: 0.3s;
+            width: 100%; padding: 18px; background: #c8a27c; border: none; 
+            color: #000; font-weight: 700; cursor: pointer; border-radius: 6px; transition: 0.3s;
         }
         .submit-btn:hover { background: #e2c0a0; }
 
         @media (max-width: 768px) {
-            .contact-content { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
             .intro-title { font-size: 2rem; }
         }
     </style>
@@ -48,63 +70,60 @@
 
 <div class="container">
     <section class="intro-section">
-        <h1 class="intro-title">CONTACT US</h1>
-<div class="intro-text">
-    <div style="margin-bottom: 30px; line-height: 1.6;"> 
-        나우 인테리어는 대구 전역의 수많은 시공 현장을 동시에 책임지고 있습니다.<br>
-        현장의 역동적인 변화 속에서도 우리가 가장 중요하게 생각하는 것은 <span class="highlight">고객과의 신뢰</span>입니다.<br>
-        어떠한 상황에서도 <span class="highlight">약속한 납기일은 반드시 지킨다는 원칙</span>으로,
-    </div>
-
-    <p style="font-size: 1.2rem; font-weight: 500;">
-        정직하고 투명한 시공을 약속드립니다. 당신의 소중한 공간을 믿고 맡겨주십시오.
-    </p>
-</div>
+        <h1 class="intro-title">CONTACT</h1>
+        <div class="intro-text-top">
+            나우 인테리어는 대구 전역의 수많은 시공 현장을 동시에 책임지고 있습니다.<br>
+            현장의 역동적인 변화 속에서도 우리가 가장 중요하게 생각하는 것은 <span class="highlight">고객과의 신뢰</span>입니다.<br>
+            어떠한 상황에서도 <span class="highlight">약속한 납기일은 반드시 지킨다는 원칙</span>으로,
+        </div>
+        <p class="intro-text-bottom">
+            정직하고 투명한 시공을 약속드립니다. 당신의 소중한 공간을 믿고 맡겨주십시오.
+        </p>
     </section>
 
-<section class="map-section" style="position: relative; background: #111;">
-    <div id="naver-map" style="width:100%; height:100%;">
-        <iframe 
-            src="https://map.naver.com/v5/embed/location/14316140.730101569,4294860.272051268,15?c=15,0,0,0,dh" 
-            width="100%" 
-            height="100%" 
-            frameborder="0" 
-            style="border:0; position:absolute; top:0; left:0;" 
-            allowfullscreen="true">
-        </iframe>
-    </div>
+    <section class="map-section">
+        <iframe src="https://map.naver.com/v5/embed/location/14316140.730101569,4294860.272051268,15?c=15,0,0,0,dh" 
+                width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+        <a href="https://naver.me/xmBISADy" target="_blank" class="map-overlay-btn">NAVER 지도에서 위치 보기</a>
+    </section>
 
-    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:-1; text-align:center;">
-        <p style="color:#666; margin-bottom:15px;">지도가 화면에 보이지 않나요?</p>
-        <a href="https://naver.me/xmBISADy" target="_blank" 
-           style="display:inline-block; padding:10px 20px; background:#2db400; color:#fff; text-decoration:none; border-radius:5px; font-weight:bold;">
-           네이버 지도로 직접보기
-        </a>
-    </div>
-</section>
-
-    <div class="contact-content">
+    <div class="contact-grid">
         <section class="info-box">
             <h3>LOCATION</h3>
-            <div class="info-item"><strong>주소</strong> 대구.북구.도남길 23. 소담B/D 3F</div>
-            <div class="info-item"><strong>연락처</strong> 010-3800-1027</div>
-            <div class="info-item"><strong>이메일</strong> nowinterior01@gmail.com</div>
-            <div class="info-item"><strong>상담시간</strong> 평일 09:00 - 18:00 (주말 휴무)</div>
+            <div class="info-item">
+                <strong>주소</strong>
+                <span>대구.북구.도남길23 소담B/D 3F</span>
+            </div>
+            <div class="info-item">
+                <strong>연락처</strong>
+                <span>010-3800-1027</span>
+            </div>
+            <div class="info-item">
+                <strong>이메일</strong>
+                <span>now-interior@gmail.com</span>
+            </div>
+            <div class="info-item">
+                <strong>상담시간</strong>
+                <span>평일 09:00 - 18:00 (주말 휴무)</span>
+            </div>
         </section>
 
-        <section class="inquiry-form">
-            <h3 style="color:#c8a27c; margin-top:0;">시공내용 및 견적 문의</h3>
-            <p style="font-size:0.8rem; color:#666; margin-bottom:20px;">* 작성하신 내용은 관리자에게만 비공개로 전달됩니다.</p>
-            <form action="https://formspree.io/f/당신의아이디" method="POST">
+        <section class="inquiry-card">
+            <h3>시공내용 및 견적 문의</h3>
+            <form action="https://formspree.io/f/여기에_아이디_넣기" method="POST">
                 <div class="form-group">
                     <label>성함 / 연락처</label>
-                    <input type="text" name="name" placeholder="예: 홍길동 / 010-0000-0000" required>
+                    <input type="text" name="name_phone" placeholder="홍길동 / 010-0000-0000" required>
                 </div>
                 <div class="form-group">
-                    <label>문의 내용 (시공 장소, 예산 등)</label>
-                    <textarea name="message" rows="5" placeholder="문의하실 내용을 상세히 적어주세요." required></textarea>
+                    <label>이메일 주소</label>
+                    <input type="email" name="email" placeholder="example@email.com" required>
                 </div>
-                <button type="submit" class="submit-btn">문의하기 (비공개 전송)</button>
+                <div class="form-group">
+                    <label>문의 내용</label>
+                    <textarea name="message" rows="5" placeholder="시공 장소, 예산, 원하시는 스타일 등을 적어주세요." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">비공개 문의 제출하기</button>
             </form>
         </section>
     </div>
