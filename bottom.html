@@ -7,7 +7,8 @@
     <style>
         body { 
             margin: 0; 
-            padding: 25px 20px; 
+            /* [수정] 아래쪽 여백(40px)을 더 주어 가려짐 방지 */
+            padding: 25px 20px 40px 20px; 
             background: #1a1a1a; 
             color: #ffffff; 
             text-align: center; 
@@ -22,15 +23,15 @@
             font-weight: 700;
         }
 
-        /* 하단 정보 전체 감싸는 박스 */
         .footer-info { 
             font-size: 0.9rem; 
             color: #bbb; 
-            line-height: 1.8;
-            display: flex; /* 가로로 나열하기 위해 설정 */
-            justify-content: center; /* 가운데 정렬 */
-            flex-wrap: wrap; /* 자리가 부족하면 아래로 내림 */
-            gap: 15px; /* 정보 사이의 간격 */
+            /* [수정] 줄 간격을 살짝 넓혀 가독성 확보 */
+            line-height: 1.9;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .phone-highlight {
@@ -39,19 +40,24 @@
         }
 
         .copyright {
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 0.8rem;
             color: #555;
+            /* [추가] 저작권 문구 아래에 공간을 더 두어 바닥에 붙지 않게 함 */
+            padding-bottom: 10px;
         }
 
-        /* 📱 모바일 최적화 (화면이 768px보다 작아질 때) */
         @media (max-width: 768px) {
+            body { 
+                /* [수정] 모바일에서 아래쪽 여백을 더 넉넉히(50px) 설정 */
+                padding: 20px 15px 50px 15px; 
+            }
             .footer-info {
-                flex-direction: column; /* 가로에서 세로 정렬로 변경 */
-                gap: 5px; /* 모바일에서는 줄 간격을 좁게 */
+                flex-direction: column;
+                gap: 8px; /* 모바일 줄 간격 살짝 넓힘 */
                 font-size: 0.85rem;
             }
-            .pc-bar { display: none; } /* 모바일에서는 세로 구분선 숨김 */
+            .pc-bar { display: none; }
         }
     </style>
 </head>
