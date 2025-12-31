@@ -62,18 +62,24 @@
 </div>
     </section>
 
-<section class="map-section">
-    <div id="naver-map-container" style="width:100%; height:100%;">
+<section class="map-section" style="position: relative; background: #111;">
+    <div id="naver-map" style="width:100%; height:100%;">
         <iframe 
             src="https://map.naver.com/v5/embed/location/14316140.730101569,4294860.272051268,15?c=15,0,0,0,dh" 
             width="100%" 
             height="100%" 
             frameborder="0" 
-            style="border:0; min-height:400px; display:block;" 
-            allowfullscreen="true" 
-            loading="lazy"
-            title="나우인테리어 위치">
+            style="border:0; position:absolute; top:0; left:0;" 
+            allowfullscreen="true">
         </iframe>
+    </div>
+
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:-1; text-align:center;">
+        <p style="color:#666; margin-bottom:15px;">지도가 화면에 보이지 않나요?</p>
+        <a href="https://naver.me/xmBISADy" target="_blank" 
+           style="display:inline-block; padding:10px 20px; background:#2db400; color:#fff; text-decoration:none; border-radius:5px; font-weight:bold;">
+           네이버 지도로 직접보기
+        </a>
     </div>
 </section>
 
