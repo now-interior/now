@@ -11,21 +11,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 60px;
-            padding: 0 10px; /* 좌우 여백을 더 줄여서 공간 확보 */
+            height: 55px; /* 높이를 살짝 낮춰 더 슬림하게 */
+            padding: 0 10px;
             background: rgba(0, 0, 0, 0.85);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo-area { display: flex; align-items: center; gap: 6px; text-decoration: none; }
-        .logo-img { height: 32px; width: auto; }
+        .logo-area { display: flex; align-items: center; gap: 5px; text-decoration: none; }
         
-        /* [수정] 폰트 크기를 0.95rem으로 줄이고 가독성을 높임 */
+        /* [수정] 로고 이미지를 기존의 2/3인 24px로 축소 */
+        .logo-img { height: 24px; width: auto; }
+        
+        /* [수정] 로고 텍스트를 0.85rem으로 축소 (2/3 수준) */
         .logo-text { 
             color: #fff; 
-            font-size: 0.95rem; 
+            font-size: 0.85rem; 
             font-weight: 700; 
             letter-spacing: 0.5px; 
             white-space: nowrap;
@@ -37,7 +39,7 @@
         .nav-item > a {
             text-decoration: none;
             color: #ddd;
-            padding: 5px 7px; /* 메뉴 간격을 더 좁게 조정 */
+            padding: 5px 7px; /* 메뉴 사이 간격을 좁게 유지 */
             font-size: 0.82rem;
             display: inline-block;
         }
@@ -61,19 +63,22 @@
 
         .nav-item:hover .sub-menu { visibility: visible; opacity: 1; }
         .sub-menu a {
-            padding: 8px 18px;
+            padding: 8px 15px;
             color: #000;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             text-decoration: none;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         /* 📱 모바일 초정밀 최적화 */
         @media (max-width: 600px) {
-            header { height: 50px; padding: 0 5px; }
-            .logo-text { font-size: 0.85rem; } /* 모바일에서 조금 더 축소 */
-            .logo-img { height: 25px; }
-            .nav-item > a { padding: 5px 4px; font-size: 0.75rem; } /* 메뉴 글자 크기 축소 */
+            header { padding: 0 5px; }
+            .logo-text { font-size: 0.78rem; } /* 모바일에서 더 작게 */
+            .logo-img { height: 20px; } /* 이미지도 모바일에선 더 축소 */
+            .nav-item > a { 
+                padding: 5px 4px; 
+                font-size: 0.75rem; 
+            }
         }
     </style>
 </head>
