@@ -14,16 +14,14 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            /* [중요] 전체 배경은 꽉 채우되 내부 요소를 정렬하기 위한 설정 */
             display: flex;
             justify-content: center; 
         }
 
-        /* [핵심] 내부 요소를 모아주는 울타리 역할을 합니다 */
         .header-container {
             width: 100%;
-            max-width: 1100px; /* 이 수치를 줄일수록 로고와 메뉴가 안으로 더 모입니다 */
-            padding: 0 30px;   /* 양 끝의 최소 여백 확보 */
+            max-width: 1100px;
+            padding: 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,31 +40,52 @@
             padding: 5px 8px;
             font-size: 0.78rem;
             display: inline-block;
+            transition: 0.2s;
         }
 
-        /* 서브메뉴 */
+        /* 메인 메뉴 마우스 올릴 때 효과 */
+        .nav-item > a:hover { color: #c8a27c; }
+
+        /* 서브메뉴 박스 스타일 */
         .sub-menu {
             position: absolute;
-            top: 35px;
+            top: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
-            background: rgba(200, 162, 124, 0.98);
+            background: #fff; /* 기본 배경은 흰색 */
             padding: 5px 0;
-            border-radius: 5px;
+            border-radius: 4px;
             visibility: hidden;
             opacity: 0;
             transition: 0.2s;
             z-index: 1001;
             white-space: nowrap; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            overflow: hidden; /* 반전 효과가 테두리 밖으로 나가지 않게 */
         }
         .nav-item:hover .sub-menu { visibility: visible; opacity: 1; }
-        .sub-menu a { padding: 8px 15px; color: #000; font-size: 0.75rem; text-decoration: none; }
 
-        /* 📱 모바일 화면 최적화 */
+        /* [수정] 서브메뉴 개별 링크 스타일 */
+        .sub-menu a { 
+            padding: 10px 20px; 
+            color: #333; 
+            font-size: 0.78rem; 
+            text-decoration: none; 
+            transition: all 0.2s ease; /* 부드러운 변화 */
+            display: block;
+        }
+
+        /* [핵심] 마우스 올렸을 때 색상 반전 효과 */
+        .sub-menu a:hover { 
+            background-color: #c8a27c; /* 사장님 포인트 컬러(골드) */
+            color: #000 !important;    /* 글자색은 검은색으로 반전 */
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
-            .header-container { padding: 0 10px; } /* 모바일에서는 여백을 줄여 메뉴 공간 확보 */
+            .header-container { padding: 0 10px; }
             .logo-text { font-size: 0.7rem; }
             .logo-img { height: 16px; }
             .nav-item > a { padding: 5px 5px; font-size: 0.75rem; }
