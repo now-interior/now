@@ -8,42 +8,43 @@
         body { margin: 0; padding: 0; background: transparent; font-family: 'Noto Sans KR', sans-serif; }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 50px; /* 조금 더 슬림하게 높이 조절 */
-            padding: 0 8px; /* 좌우 여백을 최소한으로 */
+            width: 100%;
+            height: 55px;
             background: rgba(0, 0, 0, 0.9);
             position: sticky;
             top: 0;
             z-index: 1000;
+            /* [중요] 전체 배경은 꽉 채우되 내부 요소를 정렬하기 위한 설정 */
+            display: flex;
+            justify-content: center; 
+        }
+
+        /* [핵심] 내부 요소를 모아주는 울타리 역할을 합니다 */
+        .header-container {
+            width: 100%;
+            max-width: 1100px; /* 이 수치를 줄일수록 로고와 메뉴가 안으로 더 모입니다 */
+            padding: 0 30px;   /* 양 끝의 최소 여백 확보 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
         }
 
         .logo-area { display: flex; align-items: center; gap: 4px; text-decoration: none; }
-        
-        /* [추가 축소] 로고 이미지 높이를 18px로 줄임 */
         .logo-img { height: 18px; width: auto; }
-        
-        /* [추가 축소] 로고 텍스트 크기를 0.75rem으로 줄임 */
-        .logo-text { 
-            color: #fff; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            letter-spacing: 0.2px; 
-            white-space: nowrap;
-        }
+        .logo-text { color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2px; white-space: nowrap; }
 
         nav ul { list-style: none; display: flex; gap: 0; margin: 0; padding: 0; }
         .nav-item { position: relative; }
-
         .nav-item > a {
             text-decoration: none;
             color: #ddd;
-            padding: 5px 6px; /* 메뉴 간격을 더 타이트하게 조정 */
-            font-size: 0.78rem; /* 메뉴 글자 크기도 미세하게 축소 */
+            padding: 5px 8px;
+            font-size: 0.78rem;
             display: inline-block;
         }
 
+        /* 서브메뉴 */
         .sub-menu {
             position: absolute;
             top: 35px;
@@ -60,47 +61,40 @@
             z-index: 1001;
             white-space: nowrap; 
         }
-
         .nav-item:hover .sub-menu { visibility: visible; opacity: 1; }
-        .sub-menu a {
-            padding: 8px 12px;
-            color: #000;
-            font-size: 0.75rem;
-            text-decoration: none;
-        }
+        .sub-menu a { padding: 8px 15px; color: #000; font-size: 0.75rem; text-decoration: none; }
 
-        /* 📱 모바일 극강 최적화 (초소형 화면 대응) */
-        @media (max-width: 600px) {
-            header { padding: 0 4px; }
+        /* 📱 모바일 화면 최적화 */
+        @media (max-width: 768px) {
+            .header-container { padding: 0 10px; } /* 모바일에서는 여백을 줄여 메뉴 공간 확보 */
             .logo-text { font-size: 0.7rem; }
             .logo-img { height: 16px; }
-            .nav-item > a { 
-                padding: 5px 4px; 
-                font-size: 0.72rem; 
-            }
+            .nav-item > a { padding: 5px 5px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
 <header>
-    <a href="/now/main.html" target="main" class="logo-area">
-        <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
-        <span class="logo-text">NOW INTERIOR</span>
-    </a>
-    <nav>
-        <ul>
-            <li class="nav-item"><a href="/now/main.html" target="main">HOME</a></li>
-            <li class="nav-item">
-                <a href="#">INTRO</a>
-                <div class="sub-menu">
-                    <a href="/now/intro1.html" target="main">인테리어 시공</a>
-                    <a href="/now/intro2.html" target="main">철거 작업</a>
-                </div>
-            </li>
-            <li class="nav-item"><a href="/now/gallery.html" target="main">GALLERY</a></li>
-            <li class="nav-item"><a href="/now/contact.html" target="main">CONTACT</a></li>
-        </ul>
-    </nav>
+    <div class="header-container">
+        <a href="/now/main.html" target="main" class="logo-area">
+            <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
+            <span class="logo-text">NOW INTERIOR</span>
+        </a>
+        <nav>
+            <ul>
+                <li class="nav-item"><a href="/now/main.html" target="main">HOME</a></li>
+                <li class="nav-item">
+                    <a href="#">INTRO</a>
+                    <div class="sub-menu">
+                        <a href="/now/intro1.html" target="main">인테리어 시공</a>
+                        <a href="/now/intro2.html" target="main">철거 작업</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="/now/gallery.html" target="main">GALLERY</a></li>
+                <li class="nav-item"><a href="/now/contact.html" target="main">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 </body>
 </html>
