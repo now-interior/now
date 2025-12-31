@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; padding: 0; background: transparent; font-family: 'Noto Sans KR', sans-serif; }
@@ -10,39 +11,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px; /* 메뉴바 높이 */
+            min-height: 80px; /* height 대신 min-height 사용 */
             padding: 0 40px;
-            /* 메뉴바 배경을 살짝 어둡게 처리하여 사진 위에서도 글자가 잘 보이게 함 */
-            background: rgba(0, 0, 0, 0.4); 
+            background: rgba(0, 0, 0, 0.6); /* 모바일 가독성을 위해 배경을 조금 더 어둡게 함 */
+            transition: 0.3s;
         }
 
         .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-img { height: 50px; width: auto; }
-        .logo-text { color: #fff; font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text { color: #fff; font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; }
 
-        nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
+        nav ul { list-style: none; display: flex; gap: 5px; margin: 0; padding: 0; }
         .nav-item { position: relative; }
 
         .nav-item > a {
             text-decoration: none;
             color: #ddd;
-            padding: 10px 20px;
-            font-size: 0.95rem;
+            padding: 10px 15px;
+            font-size: 0.9rem;
             display: inline-block;
             transition: 0.3s;
         }
 
         .nav-item:hover > a { color: #fff; font-weight: 700; }
 
-        /* [수정] 서브메뉴 위치를 위로 바짝 올림 */
+        /* 서브메뉴 스타일 */
         .sub-menu {
             position: absolute;
-            top: 50px; /* 기존보다 훨씬 위로 올려서 메뉴 바로 아래에 배치 */
+            top: 45px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 15px;
-            background: rgba(200, 162, 124, 0.95); /* 포인트 컬러 배경 */
+            background: rgba(200, 162, 124, 0.95);
             padding: 8px 20px;
             border-radius: 25px;
             visibility: hidden;
@@ -50,6 +51,7 @@
             transition: 0.2s ease-in-out;
             white-space: nowrap;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
 
         .nav-item:hover .sub-menu {
@@ -59,32 +61,58 @@
 
         .sub-menu a {
             text-decoration: none;
-            color: #000; /* 배경이 금색이므로 글자는 검정색 */
-            font-size: 0.85rem;
-            font-weight: 500;
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .sub-menu a:hover { color: #fff; }
+        /* 📱 모바일 최적화 코드 (화면 폭 768px 이하) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* 로고와 메뉴를 위아래로 배치 */
+                padding: 15px 10px;
+                height: auto; /* 높이 자동 조절 */
+            }
+
+            .logo-area { margin-bottom: 15px; } /* 로고와 메뉴 사이 간격 */
+            
+            nav ul {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap; /* 메뉴가 많으면 다음 줄로 넘김 */
+                gap: 0;
+            }
+
+            .nav-item > a {
+                padding: 8px 10px;
+                font-size: 0.85rem; /* 글씨 살짝 줄임 */
+            }
+
+            .sub-menu {
+                top: 35px; /* 모바일에서 서브메뉴 위치 조정 */
+                padding: 5px 15px;
+            }
+        }
     </style>
 </head>
 <body>
 <header>
-    <a href="main.html" target="main" class="logo-area">
-        <img src="./images/logo.jpg" alt="" class="logo-img">
+    <a href="/now/main.html" target="main" class="logo-area">
+        <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
         <span class="logo-text">NOW INTERIOR</span>
     </a>
     <nav>
         <ul>
-            <li class="nav-item"><a href="main.html" target="main">HOME</a></li>
+            <li class="nav-item"><a href="/now/main.html" target="main">HOME</a></li>
             <li class="nav-item">
                 <a href="#">INTRO</a>
                 <div class="sub-menu">
-                    <a href="intro1.html" target="main">인테리어 시공</a>
-                    <a href="intro2.html" target="main">철거 작업</a>
+                    <a href="/now/intro1.html" target="main">인테리어 시공</a>
+                    <a href="/now/intro2.html" target="main">철거 작업</a>
                 </div>
             </li>
-            <li class="nav-item"><a href="gallery.html" target="main">GALLERY</a></li>
-            <li class="nav-item"><a href="contact.html" target="main">CONTACT</a></li>
+            <li class="nav-item"><a href="/now/gallery.html" target="main">GALLERY</a></li>
+            <li class="nav-item"><a href="/now/contact.html" target="main">CONTACT</a></li>
         </ul>
     </nav>
 </header>
