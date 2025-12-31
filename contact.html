@@ -5,49 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 상하 여백을 40px로 조정하여 모바일에서 더 빨리 본문이 보이게 함 */
         body { margin: 0; padding: 40px 20px; background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; }
         .container { max-width: 1000px; margin: 0 auto; }
         
-        /* 상단 철학 문구 */
         .intro-section { text-align: center; margin-bottom: 40px; }
         .intro-title { font-size: 2.2rem; color: #c8a27c; font-weight: 700; margin-bottom: 20px; letter-spacing: 2px; }
         .intro-text-top { line-height: 1.6; margin-bottom: 25px; color: #ddd; font-weight: 300; font-size: 0.95rem; }
         .intro-text-bottom { font-size: 1.1rem; font-weight: 500; color: #fff; word-break: keep-all; }
         .highlight { color: #c8a27c; font-weight: 500; border-bottom: 1px solid #c8a27c; }
 
-        /* 지도 섹션: 모바일에서 잘리지 않도록 100% 대응 */
+        /* [수정] 지도 섹션 높이 조절 및 버튼 겹침 설정 */
         .map-section { 
             width: 100%; 
-            height: 380px; 
+            height: 400px; 
             background-color: #222; 
             margin-bottom: 40px; 
             border-radius: 10px; 
             overflow: hidden; 
-            position: relative;
+            position: relative; /* 버튼이 이 박스 기준으로 움직이게 함 */
             border: 1px solid #333;
         }
+
+        /* [수정] 버튼 위치를 중앙으로 배치 */
         .map-overlay-btn {
             position: absolute;
-            bottom: 20px; left: 50%; /* 버튼 위치를 아래로 내려 지도 가림 방지 */
-            transform: translateX(-50%);
+            top: 50%; /* 위에서 50% 지점 */
+            left: 50%; /* 왼쪽에서 50% 지점 */
+            transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
             background: #2db400; color: #fff;
-            padding: 12px 25px; border-radius: 30px;
-            text-decoration: none; font-weight: 700; font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            z-index: 10;
+            padding: 14px 28px; border-radius: 30px;
+            text-decoration: none; font-weight: 700; font-size: 0.95rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            z-index: 10; /* 지도보다 위로 오게 함 */
             white-space: nowrap;
+            transition: 0.3s;
         }
+        .map-overlay-btn:hover { background: #269a00; transform: translate(-50%, -50%) scale(1.05); }
 
-        /* 하단 레이아웃 */
         .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
-        
         .info-box h3 { color: #c8a27c; font-size: 1.3rem; margin-bottom: 20px; border-left: 4px solid #c8a27c; padding-left: 15px; }
         .info-item { margin-bottom: 15px; }
         .info-item strong { color: #888; display: block; font-size: 0.85rem; margin-bottom: 3px; }
         .info-item span { color: #fff; font-size: 1rem; }
 
-        /* 문의 폼 */
         .inquiry-card { background: #111; padding: 30px; border-radius: 15px; border: 1px solid #222; height: fit-content; }
         .inquiry-card h3 { margin-top: 0; color: #fff; margin-bottom: 20px; font-size: 1.2rem; }
         .form-group { margin-bottom: 15px; text-align: left; }
@@ -62,14 +62,12 @@
         }
         .submit-btn:hover { background: #e2c0a0; }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
-            body { padding: 30px 15px 60px 15px; } /* 하단바 가려짐 방지 여백 추가 */
+            body { padding: 30px 15px 60px 15px; }
             .contact-grid { grid-template-columns: 1fr; gap: 30px; }
             .intro-title { font-size: 1.8rem; }
-            .intro-text-top { font-size: 0.9rem; }
-            .map-section { height: 300px; }
-            .inquiry-card { padding: 25px; }
+            .map-section { height: 320px; }
+            .map-overlay-btn { font-size: 0.85rem; padding: 10px 20px; }
         }
     </style>
 </head>
