@@ -15,7 +15,7 @@
         .intro-text-bottom { font-size: 1.2rem; font-weight: 500; color: #fff; }
         .highlight { color: #c8a27c; font-weight: 500; border-bottom: 1px solid #c8a27c; }
 
-        /* 지도 섹션 (가장 확실한 링크 방식) */
+        /* 지도 섹션 */
         .map-section { 
             width: 100%; 
             height: 400px; 
@@ -46,23 +46,26 @@
         .info-item span { color: #fff; font-size: 1.05rem; }
 
         /* 문의 폼 */
-        .inquiry-card { background: #111; padding: 35px; border-radius: 15px; border: 1px solid #222; }
+        .inquiry-card { background: #111; padding: 35px; border-radius: 15px; border: 1px solid #222; height: fit-content; }
         .inquiry-card h3 { margin-top: 0; color: #fff; margin-bottom: 20px; font-size: 1.4rem; }
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #aaa; }
         .form-group input, .form-group textarea { 
             width: 100%; padding: 12px; background: #222; border: 1px solid #333; 
-            color: #fff; border-radius: 6px; box-sizing: border-box;
+            color: #fff; border-radius: 6px; box-sizing: border-box; font-family: inherit;
         }
         .submit-btn { 
             width: 100%; padding: 18px; background: #c8a27c; border: none; 
-            color: #000; font-weight: 700; cursor: pointer; border-radius: 6px; transition: 0.3s;
+            color: #000; font-weight: 700; cursor: pointer; border-radius: 6px; transition: 0.3s; font-size: 1rem;
         }
         .submit-btn:hover { background: #e2c0a0; }
 
+        /* 모바일 대응 */
         @media (max-width: 768px) {
-            .contact-grid { grid-template-columns: 1fr; }
+            body { padding: 40px 15px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
             .intro-title { font-size: 2rem; }
+            .inquiry-card { padding: 25px; }
         }
     </style>
 </head>
@@ -82,7 +85,7 @@
     </section>
 
     <section class="map-section">
-        <iframe src="https://map.naver.com/v5/embed/location/14316140.730101569,4294860.272051268,15?c=15,0,0,0,dh" 
+        <iframe src="https://map.naver.com/v5/embed/location/128.5913,35.9561,15" 
                 width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
         <a href="https://naver.me/xmBISADy" target="_blank" class="map-overlay-btn">NAVER 지도에서 위치 보기</a>
     </section>
@@ -92,7 +95,7 @@
             <h3>LOCATION</h3>
             <div class="info-item">
                 <strong>주소</strong>
-                <span>대구.북구.도남길23 소담B/D 3F</span>
+                <span>대구 북구 도남길 23 소담B/D 3F</span>
             </div>
             <div class="info-item">
                 <strong>연락처</strong>
@@ -110,11 +113,11 @@
 
         <section class="inquiry-card">
             <h3>시공내용 및 견적 문의</h3>
-    <form action="https://formspree.io/f/xeeqyvvw" method="POST">
-    <input type="hidden" name="_next" value="https://now-interior.github.io/now/thankyou.html""        
+            <form action="https://formspree.io/f/xeeqyvvw" method="POST">
+                <input type="hidden" name="_next" value="https://now-interior.github.io/now/thankyou.html">
 
-     <div class="form-group">
-        <label>성함 / 연락처</label>
+                <div class="form-group">
+                    <label>성함 / 연락처</label>
                     <input type="text" name="name_phone" placeholder="홍길동 / 010-0000-0000" required>
                 </div>
                 <div class="form-group">
