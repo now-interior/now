@@ -45,60 +45,61 @@
 
         .nav-item > a:hover { color: #c8a27c; }
 
-        /* [수정] 서브메뉴 박스: 배경을 검은색으로, 크기를 슬림하게 */
+        /* [핵심] 가로형 서브메뉴 박스 */
         .sub-menu {
             position: absolute;
             top: 45px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            background: #111; /* 흰색 바탕을 검은색으로 변경 */
-            padding: 0; /* 내부 여백 제거 */
-            border-radius: 2px;
+            display: flex; /* 세로가 아닌 가로 정렬 */
+            flex-direction: row; 
+            gap: 10px; /* 버튼 사이 간격 */
+            background: transparent; /* 배경을 투명하게 해서 버튼만 보이게 함 */
+            padding: 5px 0;
             visibility: hidden;
             opacity: 0;
-            transition: 0.2s;
+            transition: 0.3s;
             z-index: 1001;
-            white-space: nowrap; 
-            border: 1px solid #333; /* 얇은 테두리로 구분 */
-            overflow: hidden;
         }
 
         .nav-item:hover .sub-menu { visibility: visible; opacity: 1; }
 
-        /* [수정] 서브메뉴 링크: 크기를 줄이고 색상 통일 */
+        /* [핵심] 동그란 알약 버튼 스타일 */
         .sub-menu a { 
-            padding: 8px 15px; /* 크기를 훨씬 작게 줄임 */
-            color: #bbb; 
-            font-size: 0.72rem; /* 메인메뉴보다 살짝 작게 */
+            padding: 6px 14px;
+            color: #fff; 
+            background: #222; /* 기본 검정색 버튼 */
+            font-size: 0.7rem;
             text-decoration: none; 
+            border-radius: 20px; /* 동그랗게 */
+            border: 1px solid #c8a27c; /* 테두리는 골드 포인트 */
             transition: 0.2s;
-            display: block;
-            border-bottom: 1px solid #222;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .sub-menu a:last-child { border-bottom: none; }
-
-        /* 마우스 호버 및 터치 시 반전 */
+        /* 마우스 호버 시 버튼 색상 반전 */
         .sub-menu a:hover { 
             background-color: #c8a27c; 
-            color: #000 !important;
+            color: #000;
             font-weight: 700;
         }
 
-        /* [추가] 클릭했을 때 메뉴를 숨기는 클래스 */
-        .hide-menu { visibility: hidden !important; opacity: 0 !important; display: none !important; }
+        /* 클릭 시 숨김 클래스 */
+        .hide-menu { display: none !important; }
 
         @media (max-width: 768px) {
             .header-container { padding: 0 10px; }
             .logo-text { font-size: 0.7rem; }
-            .nav-item > a { padding: 10px 8px; }
+            .nav-item > a { padding: 10px 6px; }
+            /* 모바일에서 버튼이 너무 크면 화면 밖으로 나갈 수 있으니 조정 */
+            .sub-menu { gap: 6px; top: 42px; }
+            .sub-menu a { padding: 5px 10px; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
-<header id="top-header">
+<header>
     <div class="header-container">
         <a href="/now/main.html" target="main" class="logo-area">
             <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
@@ -124,10 +125,7 @@
 <script>
     function forceClose() {
         var menu = document.getElementById('intro-sub');
-        // 1. 즉시 숨김 처리
         menu.classList.add('hide-menu');
-        
-        // 2. 잠시 후(0.5초) 클래스를 제거하여 다음 마우스 오버 때 다시 나오게 함
         setTimeout(function() {
             menu.classList.remove('hide-menu');
         }, 500);
