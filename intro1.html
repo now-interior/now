@@ -7,27 +7,50 @@
     <style>
         body {
             margin: 0; padding: 0;
+            /* 배경 이미지 설정 */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('images/interior_bg.jpg') no-repeat center center/cover;
             height: 100vh; color: #fff; font-family: 'Noto Sans KR', sans-serif;
-            display: flex; align-items: center; justify-content: flex-start;
+            display: flex; align-items: center; justify-content: flex-start; /* PC는 좌측 정렬 */
         }
-        .content { margin-left: 10%; max-width: 600px; line-height: 1.8; }
-        .title { font-size: 3rem; color: #c8a27c; margin-bottom: 20px; font-weight: 700; }
-        .text { font-size: 1.1rem; font-weight: 300; }
+
+        .content { 
+            margin-left: 10%; 
+            max-width: 650px; 
+            line-height: 1.8; 
+            text-align: left; /* PC는 좌측 정렬 */
+        }
+
+        .title { 
+            font-size: 3rem; 
+            color: #c8a27c; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+            letter-spacing: 1px;
+        }
+
+        .text { font-size: 1.15rem; font-weight: 300; }
         .highlight { font-weight: 500; color: #fff; border-bottom: 2px solid #c8a27c; }
 
-        /* 📱 모바일 버젼 수정 */
+        /* 모바일 전용 줄바꿈 클래스 (PC에선 숨김) */
+        .mobile-br { display: none; }
+
+        /* 📱 모바일 대응 (768px 이하) */
         @media (max-width: 768px) {
-            body { justify-content: center; } /* 중앙 정렬 */
-            .content { 
-                margin-left: 0; /* 밀어내는 여백 제거 */
-                padding: 0 20px; /* 양옆 최소 여백만 유지 */
-                text-align: center; /* 글씨 가운데 정렬 */
-                max-width: 90%; 
+            body { 
+                justify-content: center; /* 화면 중앙 배치 */
             }
-            .title { font-size: 2.2rem; } /* 모바일에서 제목 크기 조절 */
-            .text { font-size: 1rem; word-break: keep-all; } /* 단어 단위 줄바꿈 */
+            .content { 
+                margin-left: 0; 
+                padding: 0 20px; 
+                text-align: center; /* 글자 가운데 정렬 */
+                max-width: 90%;
+            }
+            .title { font-size: 2.2rem; }
+            .text { font-size: 1rem; word-break: keep-all; }
+            
+            /* 모바일에서만 줄바꿈 활성화 */
+            .mobile-br { display: block; }
         }
     </style>
 </head>
@@ -35,9 +58,22 @@
     <div class="content">
         <div class="title">INTERIOR DESIGN</div>
         <div class="text">
-            <p><span class="highlight">대구의 공간을 가장 잘 아는 파트너, NOW INTERIOR</span></p>
-            <p>우리는 단순한 공사를 넘어 고객의 삶과 비즈니스가 담기는 공간을 설계합니다. 주거 공간부터 상업 시설까지 수많은 프로젝트를 성공적으로 수행해 왔습니다.</p>
-            <p>트렌디한 감각과 고집스러운 장인 정신으로 당신의 상상을 현실로 만듭니다.</p>
+            <p>
+                <span class="highlight">
+                    대구의 공간을 가장 잘 아는 파트너,<br class="mobile-br">
+                    NOW INTERIOR
+                </span>
+            </p>
+            <p>
+                우리는 단순한 공사를 넘어 고객의 삶과 비즈니스가<br class="mobile-br">
+                담기는 공간을 설계합니다. 대구 지역에서 수년간 쌓아온<br class="mobile-br">
+                신뢰를 바탕으로 주거 공간부터 상업 시설까지<br class="mobile-br">
+                수많은 프로젝트를 성공적으로 수행해 왔습니다.
+            </p>
+            <p>
+                트렌디한 감각과 고집스러운 장인 정신으로<br class="mobile-br">
+                당신의 상상을 현실로 만듭니다.
+            </p>
         </div>
     </div>
 </body>
