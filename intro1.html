@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0; padding: 0;
-            /* 배경 이미지가 안 뜨는 것을 대비해 검정 배경색을 깔아둡니다 */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('images/interior_bg.jpg') no-repeat center center/cover;
             height: 100vh; color: #fff; font-family: 'Noto Sans KR', sans-serif;
@@ -16,6 +16,19 @@
         .title { font-size: 3rem; color: #c8a27c; margin-bottom: 20px; font-weight: 700; }
         .text { font-size: 1.1rem; font-weight: 300; }
         .highlight { font-weight: 500; color: #fff; border-bottom: 2px solid #c8a27c; }
+
+        /* 📱 모바일 버젼 수정 */
+        @media (max-width: 768px) {
+            body { justify-content: center; } /* 중앙 정렬 */
+            .content { 
+                margin-left: 0; /* 밀어내는 여백 제거 */
+                padding: 0 20px; /* 양옆 최소 여백만 유지 */
+                text-align: center; /* 글씨 가운데 정렬 */
+                max-width: 90%; 
+            }
+            .title { font-size: 2.2rem; } /* 모바일에서 제목 크기 조절 */
+            .text { font-size: 1rem; word-break: keep-all; } /* 단어 단위 줄바꿈 */
+        }
     </style>
 </head>
 <body>
@@ -23,7 +36,7 @@
         <div class="title">INTERIOR DESIGN</div>
         <div class="text">
             <p><span class="highlight">대구의 공간을 가장 잘 아는 파트너, NOW INTERIOR</span></p>
-            <p>우리는 단순한 공사를 넘어 고객의 삶과 비즈니스가 담기는 공간을 설계합니다. 대구 지역에서 수년간 쌓아온 신뢰를 바탕으로 주거 공간부터 상업 시설까지 수많은 프로젝트를 성공적으로 수행해 왔습니다.</p>
+            <p>우리는 단순한 공사를 넘어 고객의 삶과 비즈니스가 담기는 공간을 설계합니다. 주거 공간부터 상업 시설까지 수많은 프로젝트를 성공적으로 수행해 왔습니다.</p>
             <p>트렌디한 감각과 고집스러운 장인 정신으로 당신의 상상을 현실로 만듭니다.</p>
         </div>
     </div>
