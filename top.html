@@ -37,7 +37,7 @@
         .nav-item > a {
             text-decoration: none;
             color: #ddd;
-            padding: 10px 8px; /* 터치 영역 확보를 위해 상하 패딩 살짝 증가 */
+            padding: 10px 12px;
             font-size: 0.78rem;
             display: inline-block;
             transition: 0.2s;
@@ -45,58 +45,60 @@
 
         .nav-item > a:hover { color: #c8a27c; }
 
-        /* 서브메뉴 박스 */
+        /* [수정] 서브메뉴 박스: 배경을 검은색으로, 크기를 슬림하게 */
         .sub-menu {
             position: absolute;
-            top: 45px; /* 헤더 높이에 맞춰 살짝 조정 */
+            top: 45px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
-            background: #fff;
-            padding: 5px 0;
-            border-radius: 4px;
+            background: #111; /* 흰색 바탕을 검은색으로 변경 */
+            padding: 0; /* 내부 여백 제거 */
+            border-radius: 2px;
             visibility: hidden;
             opacity: 0;
             transition: 0.2s;
             z-index: 1001;
             white-space: nowrap; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid #333; /* 얇은 테두리로 구분 */
             overflow: hidden;
         }
 
-        /* PC 마우스 호버 시 표시 */
         .nav-item:hover .sub-menu { visibility: visible; opacity: 1; }
 
+        /* [수정] 서브메뉴 링크: 크기를 줄이고 색상 통일 */
         .sub-menu a { 
-            padding: 12px 25px; /* 모바일 터치를 위해 더 넉넉하게 */
-            color: #333; 
-            font-size: 0.82rem; /* 가독성을 위해 살짝 키움 */
+            padding: 8px 15px; /* 크기를 훨씬 작게 줄임 */
+            color: #bbb; 
+            font-size: 0.72rem; /* 메인메뉴보다 살짝 작게 */
             text-decoration: none; 
-            transition: all 0.2s;
+            transition: 0.2s;
             display: block;
+            border-bottom: 1px solid #222;
         }
 
-        /* 마우스 호버 및 모바일 터치 시 색상 반전 */
-        .sub-menu a:hover, .sub-menu a:active { 
+        .sub-menu a:last-child { border-bottom: none; }
+
+        /* 마우스 호버 및 터치 시 반전 */
+        .sub-menu a:hover { 
             background-color: #c8a27c; 
             color: #000 !important;
             font-weight: 700;
         }
 
-        /* 📱 모바일 최적화 */
+        /* [추가] 클릭했을 때 메뉴를 숨기는 클래스 */
+        .hide-menu { visibility: hidden !important; opacity: 0 !important; display: none !important; }
+
         @media (max-width: 768px) {
             .header-container { padding: 0 10px; }
             .logo-text { font-size: 0.7rem; }
-            .nav-item > a { padding: 10px 6px; font-size: 0.75rem; }
-            
-            /* 모바일에서 서브메뉴가 더 잘 보이도록 조정 */
-            .sub-menu { top: 40px; }
+            .nav-item > a { padding: 10px 8px; }
         }
     </style>
 </head>
 <body>
-<header>
+<header id="top-header">
     <div class="header-container">
         <a href="/now/main.html" target="main" class="logo-area">
             <img src="/now/images/logo.jpg" alt="로고" class="logo-img">
@@ -106,9 +108,10 @@
             <ul>
                 <li class="nav-item"><a href="/now/main.html" target="main">HOME</a></li>
                 <li class="nav-item">
-                    <a href="#" onclick="return false;">INTRO</a> <div class="sub-menu">
-                        <a href="/now/intro1.html" target="main" onclick="closeMenu()">인테리어 시공</a>
-                        <a href="/now/intro2.html" target="main" onclick="closeMenu()">철거 작업</a>
+                    <a href="#" onclick="return false;">INTRO</a>
+                    <div class="sub-menu" id="intro-sub">
+                        <a href="/now/intro1.html" target="main" onclick="forceClose()">인테리어 시공</a>
+                        <a href="/now/intro2.html" target="main" onclick="forceClose()">철거 작업</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="/now/gallery.html" target="main">GALLERY</a></li>
@@ -119,19 +122,15 @@
 </header>
 
 <script>
-    // 서브메뉴 클릭 시 메뉴를 강제로 닫아주는 함수
-    function closeMenu() {
-        var subMenus = document.querySelectorAll('.sub-menu');
-        subMenus.forEach(function(menu) {
-            menu.style.visibility = 'hidden';
-            menu.style.opacity = '0';
-            
-            // 0.3초 후에 다시 초기 상태로 돌려놓아야 다음에 다시 열립니다.
-            setTimeout(function() {
-                menu.style.visibility = '';
-                menu.style.opacity = '';
-            }, 300);
-        });
+    function forceClose() {
+        var menu = document.getElementById('intro-sub');
+        // 1. 즉시 숨김 처리
+        menu.classList.add('hide-menu');
+        
+        // 2. 잠시 후(0.5초) 클래스를 제거하여 다음 마우스 오버 때 다시 나오게 함
+        setTimeout(function() {
+            menu.classList.remove('hide-menu');
+        }, 500);
     }
 </script>
 </body>
