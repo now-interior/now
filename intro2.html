@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0; padding: 0;
-            /* 배경 이미지: 파일명이 대문자 JPG라면 아래 .jpg를 .JPG로 바꿔주세요 */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('images/demolition_bg.jpg') no-repeat center center/cover;
             height: 100vh; color: #fff; font-family: 'Noto Sans KR', sans-serif;
@@ -16,6 +16,19 @@
         .title { font-size: 3rem; color: #c8a27c; margin-bottom: 20px; font-weight: 700; }
         .text { font-size: 1.1rem; font-weight: 300; }
         .highlight { font-weight: 500; color: #fff; border-bottom: 2px solid #c8a27c; }
+
+        /* 📱 모바일 버젼 수정 */
+        @media (max-width: 768px) {
+            body { justify-content: center; } /* 중앙 정렬 */
+            .content { 
+                margin-right: 0; /* 밀어내는 여백 제거 */
+                padding: 0 20px; /* 양옆 최소 여백 유지 */
+                text-align: center; /* 우측 정렬을 가운데 정렬로 변경 */
+                max-width: 90%;
+            }
+            .title { font-size: 2.2rem; }
+            .text { font-size: 1rem; word-break: keep-all; }
+        }
     </style>
 </head>
 <body>
@@ -24,7 +37,7 @@
         <div class="text">
             <p><span class="highlight">새로운 시작을 위한 완벽한 비움, 전문 철거 솔루션</span></p>
             <p>인테리어의 시작은 깨끗한 철거에서 비롯됩니다. 우리는 각종 <span class="highlight">관급 공사 및 대형 프로젝트</span>를 수행하며 검증된 실력을 보유하고 있습니다.</p>
-            <p>신속한 작업속도, 합리적인 비용, 그리고 이웃에 피해가 가지 않는 깔끔한 뒷마무리까지. 전문 장비와 숙련된 인력이 안전하고 완벽하게 철거를 책임집니다.</p>
+            <p>신속한 작업속도, 합리적인 비용, 깔끔한 뒷마무리까지. 전문 장비와 숙련된 인력이 완벽하게 철거를 책임집니다.</p>
         </div>
     </div>
 </body>
