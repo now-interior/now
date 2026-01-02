@@ -7,18 +7,17 @@
     <style>
         body {
             margin: 0; padding: 0;
-            /* 배경 이미지 설정 */
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('images/interior_bg.jpg') no-repeat center center/cover;
             height: 100vh; color: #fff; font-family: 'Noto Sans KR', sans-serif;
-            display: flex; align-items: center; justify-content: flex-start; /* PC는 좌측 정렬 */
+            display: flex; align-items: center; justify-content: flex-start;
         }
 
         .content { 
             margin-left: 10%; 
             max-width: 650px; 
             line-height: 1.8; 
-            text-align: left; /* PC는 좌측 정렬 */
+            text-align: left;
         }
 
         .title { 
@@ -32,24 +31,25 @@
         .text { font-size: 1.15rem; font-weight: 300; }
         .highlight { font-weight: 500; color: #fff; border-bottom: 2px solid #c8a27c; }
 
-        /* 모바일 전용 줄바꿈 클래스 (PC에선 숨김) */
         .mobile-br { display: none; }
 
-        /* 📱 모바일 대응 (768px 이하) */
+        /* 📱 모바일 대응 수정 */
         @media (max-width: 768px) {
             body { 
-                justify-content: center; /* 화면 중앙 배치 */
+                justify-content: center; 
+                /* [보강] 글이 길어질 경우를 대비해 높이 설정 변경 */
+                height: auto; 
+                min-height: 100vh; 
+                padding: 50px 0; 
             }
             .content { 
                 margin-left: 0; 
                 padding: 0 20px; 
-                text-align: center; /* 글자 가운데 정렬 */
+                text-align: center; 
                 max-width: 90%;
             }
             .title { font-size: 2.2rem; }
             .text { font-size: 1rem; word-break: keep-all; }
-            
-            /* 모바일에서만 줄바꿈 활성화 */
             .mobile-br { display: block; }
         }
     </style>
