@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://now-interior.kro.kr/sitemap.xml
